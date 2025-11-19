@@ -9,32 +9,35 @@
       // Enlaces de la app
       var androidUrl = "https://play.google.com/store/apps/details?id=com.coppel.coppelapp";
       var iosUrl = "https://apps.apple.com/us/app/coppel-compras-en-l%C3%ADnea/id1267382794";
+      var desktopUrl = "https://www.coppel.com/";
 
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
 
       // Detectar Android
-      if (/android/i.test(userAgent)) {
+      if (/android/i.test(ua)) {
         window.location.href = androidUrl;
         return;
       }
 
-      // Detectar iOS (iPhone / iPad / iPod)
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      // Detectar iOS
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
         window.location.href = iosUrl;
         return;
       }
 
-      // Fallback (por ejemplo, navegadores de escritorio u otros SO):
-      // Puedes elegir hacia dónde mandar por defecto.
-      // Aquí, por ejemplo, mandamos a la versión web de Google Play:
-      window.location.href = androidUrl;
+      // Detectar Windows / Desktop
+      if (/Windows|Macintosh|Linux/i.test(ua)) {
+        window.location.href = desktopUrl;
+        return;
+      }
+
+      // Fallback general
+      window.location.href = desktopUrl;
     })();
   </script>
 </head>
 <body>
-  <!-- No mostramos nada; todo se hace por JS -->
-  <noscript>
-    Para descargar la app, activa JavaScript y vuelve a escanear el código QR.
-  </noscript>
+  <!-- No se muestra nada -->
+  <noscript>Activa JavaScript para continuar.</noscript>
 </body>
 </html>
