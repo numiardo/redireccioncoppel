@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redireccionando…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      // Enlaces de la app
+      var androidUrl = "https://play.google.com/store/apps/details?id=com.coppel.coppelapp";
+      var iosUrl = "https://apps.apple.com/us/app/coppel-compras-en-l%C3%ADnea/id1267382794";
+
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Detectar Android
+      if (/android/i.test(userAgent)) {
+        window.location.href = androidUrl;
+        return;
+      }
+
+      // Detectar iOS (iPhone / iPad / iPod)
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = iosUrl;
+        return;
+      }
+
+      // Fallback (por ejemplo, navegadores de escritorio u otros SO):
+      // Puedes elegir hacia dónde mandar por defecto.
+      // Aquí, por ejemplo, mandamos a la versión web de Google Play:
+      window.location.href = androidUrl;
+    })();
+  </script>
+</head>
+<body>
+  <!-- No mostramos nada; todo se hace por JS -->
+  <noscript>
+    Para descargar la app, activa JavaScript y vuelve a escanear el código QR.
+  </noscript>
+</body>
+</html>
